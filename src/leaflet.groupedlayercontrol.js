@@ -9,7 +9,10 @@ L.Control.GroupedLayers = L.Control.extend({
     position: 'topright',
     autoZIndex: true,
     exclusiveGroups: [],
-    groupCheckboxes: false
+    groupCheckboxes: false,
+    groupsCollapsable: false,
+    groupsExpandedClass: "leaflet-control-layers-group-collapse-default",
+    groupsCollapsedClass: "leaflet-control-layers-group-expand-default",
   },
 
   initialize: function (baseLayers, groupedOverlays, options) {
@@ -66,7 +69,7 @@ L.Control.GroupedLayers = L.Control.extend({
     var id = L.Util.stamp(layer);
     var _layer = this._getLayer(id);
     if (_layer) {
-      delete this._layers[this._layers.indexOf(_layer)];
+      delete this.layers[this.layers.indexOf(_layer)];
     }
     this._update();
     return this;
@@ -276,6 +279,21 @@ L.Control.GroupedLayers = L.Control.extend({
           }
         }
 
+        if (this.options.groupsCollapsable){
+          groupContainer.classList.add("group-collapsable");
+          groupContainer.classList.add("collapsed");
+
+          var groupMin = document.createElement('span');
+          groupMin.className = 'leaflet-control-layers-group-collapse '+this.options.groupsExpandedClass;
+          groupLabel.appendChild(groupMin);
+
+          var groupMax = document.createElement('span');
+          groupMax.className = 'leaflet-control-layers-group-expand '+this.options.groupsCollapsedClass;
+          groupLabel.appendChild(groupMax);
+
+          L.DomEvent.on(groupLabel, 'click', this._onGroupCollapseToggle, groupContainer);
+        }
+
         var groupName = document.createElement('span');
         groupName.className = 'leaflet-control-layers-group-name';
         groupName.innerHTML = obj.group.name;
@@ -297,7 +315,18 @@ L.Control.GroupedLayers = L.Control.extend({
     return label;
   },
 
-  _onGroupInputClick: function () {
+  _onGroupCollapseToggle: function (event) {
+    L.DomEvent.stopPropagation(event);
+    L.DomEvent.preventDefault(event);
+    if (this.classList.contains("group-collapsable") && this.classList.contains("collapsed")){
+      this.classList.remove("collapsed");
+    }else if (this.classList.contains("group-collapsable") && !this.classList.contains("collapsed")){
+      this.classList.add("collapsed");
+    }
+  },
+
+  _onGroupInputClick: function (event) {
+    L.DomEvent.stopPropagation(event);
     var i, input, obj;
 
     var this_legend = this.legend;
