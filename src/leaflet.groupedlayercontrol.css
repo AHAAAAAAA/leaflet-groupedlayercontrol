@@ -32,3 +32,13 @@
   display: inline-block;
   text-align: center;
 }
+
+.leaflet-control-layers-group-label {
+  margin-bottom: 2px;
+}
+.leaflet-control-layers-group-selector, .leaflet-control-layers-selector {
+  vertical-align: top;
+}
+.leaflet-control-layers-group label:not(.leaflet-control-layers-group-label) {
+  text-indent: 15px;
+}
