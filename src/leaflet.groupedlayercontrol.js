@@ -10,7 +10,7 @@ L.Control.GroupedLayers = L.Control.extend({
     autoZIndex: true,
     exclusiveGroups: [],
     groupCheckboxes: false,
-    groupsCollapsable: false,
+    groupsCollapsible: false,
     groupsExpandedClass: "leaflet-control-layers-group-collapse-default",
     groupsCollapsedClass: "leaflet-control-layers-group-expand-default",
   },
@@ -286,8 +286,8 @@ L.Control.GroupedLayers = L.Control.extend({
           }
         }
 
-        if (this.options.groupsCollapsable){
-          groupContainer.classList.add("group-collapsable");
+        if (this.options.groupsCollapsible){
+          groupContainer.classList.add("group-collapsible");
           groupContainer.classList.add("collapsed");
 
           var groupMin = document.createElement('span');
@@ -325,9 +325,9 @@ L.Control.GroupedLayers = L.Control.extend({
   _onGroupCollapseToggle: function (event) {
     L.DomEvent.stopPropagation(event);
     L.DomEvent.preventDefault(event);
-    if (this.classList.contains("group-collapsable") && this.classList.contains("collapsed")){
+    if (this.classList.contains("group-collapsible") && this.classList.contains("collapsed")){
       this.classList.remove("collapsed");
-    }else if (this.classList.contains("group-collapsable") && !this.classList.contains("collapsed")){
+    }else if (this.classList.contains("group-collapsible") && !this.classList.contains("collapsed")){
       this.classList.add("collapsed");
     }
   },
