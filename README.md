@@ -1,3 +1,5 @@
+Faithful fork of [ismyrnow's groupedlayercontrol ](https://github.com/ismyrnow/leaflet-groupedlayercontrol) with a few extra bug fixes/PRs merged in.
+
 leaflet-groupedlayercontrol
 ===========================
 
@@ -68,7 +70,7 @@ var options = {
   // enable basic collapsability
   groupsCollapsable: true,
   // (Optional) The css class(es) used to indicated the group is expanded
-  groupsExpandedClass: "glyphicon glyphicon-chevron-down", 
+  groupsExpandedClass: "glyphicon glyphicon-chevron-down",
   // (Optional) The css class(es) used to indicated the group is collapsed
   groupsCollapsedClass: "glyphicon glyphicon-chevron-right"
 };
